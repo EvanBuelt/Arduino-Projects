@@ -1,4 +1,17 @@
+#include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
+
 const int BUZZER_PIN = 6;
+
+const int DB7 = 5;
+const int DB6 = 4;
+const int DB5 = 3;
+const int DB4 = 2;
+
+const int RS_PIN = 9;
+const int ENABLE_PIN = 8;
+
+LiquidCrystal lcd(RS_PIN, ENABLE_PIN, DB7, DB6, DB5, DB4);
 
 enum Frequency {
   None     = 0,
@@ -91,7 +104,7 @@ struct Note {
   Duration duration; // In ms
 };
 
-Note HappyBirthday[25] = {
+const Note HappyBirthday[25] PROGMEM = {
   {Frequency::d4, Duration::Eight  }, 
   {Frequency::d4, Duration::Eight  },
   {Frequency::e4, Duration::Quarter},
@@ -122,147 +135,289 @@ Note HappyBirthday[25] = {
   {Frequency::g4, Duration::Quarter}
 };
 
-Note Tetris[59] = {
+const Note Tetris[59] PROGMEM = {
   // Measure 1
-  {Frequency::e5, Duration::Quarter}, // 0
-  {Frequency::b4, Duration::Eight  }, // 1
-  {Frequency::c5, Duration::Eight  }, // 2
-  {Frequency::d5, Duration::Quarter}, // 3
-  {Frequency::c5, Duration::Eight  }, // 4
-  {Frequency::b4, Duration::Eight  }, // 5
+  {Frequency::e5      , Duration::Quarter    }, // 0
+  {Frequency::b4      , Duration::Eight      }, // 1
+  {Frequency::c5      , Duration::Eight      }, // 2
+  {Frequency::d5      , Duration::Quarter    }, // 3
+  {Frequency::c5      , Duration::Eight      }, // 4
+  {Frequency::b4      , Duration::Eight      }, // 5
   
   // Measure 2
-  {Frequency::a4, Duration::Quarter}, // 6
-  {Frequency::a4, Duration::Eight  }, // 7
-  {Frequency::c5, Duration::Eight  }, // 8
-  {Frequency::e5, Duration::Quarter}, // 9
-  {Frequency::d5, Duration::Eight  }, // 10
-  {Frequency::c5, Duration::Eight  }, // 11
+  {Frequency::a4      , Duration::Quarter    }, // 6
+  {Frequency::a4      , Duration::Eight      }, // 7
+  {Frequency::c5      , Duration::Eight      }, // 8
+  {Frequency::e5      , Duration::Quarter    }, // 9
+  {Frequency::d5      , Duration::Eight      }, // 10
+  {Frequency::c5      , Duration::Eight      }, // 11
   
   // Measure 3
-  {Frequency::b4, Duration::QuarterPlus}, // 12
-  {Frequency::c5, Duration::Eight  }, // 13
-  {Frequency::d5, Duration::Quarter}, // 14
-  {Frequency::e5, Duration::Quarter}, // 15
+  {Frequency::b4      , Duration::QuarterPlus}, // 12
+  {Frequency::c5      , Duration::Eight      }, // 13
+  {Frequency::d5      , Duration::Quarter    }, // 14
+  {Frequency::e5      , Duration::Quarter    }, // 15
   
   // Measure 4
-  {Frequency::c5, Duration::Quarter}, // 16
-  {Frequency::a4, Duration::Quarter}, // 17
-  {Frequency::a4, Duration::Quarter}, // 18
-  {Frequency::b4, Duration::Eight  }, // 19
-  {Frequency::c5, Duration::Eight  }, // 20
+  {Frequency::c5      , Duration::Quarter    }, // 16
+  {Frequency::a4      , Duration::Quarter    }, // 17
+  {Frequency::a4      , Duration::Quarter    }, // 18
+  {Frequency::b4      , Duration::Eight      }, // 19
+  {Frequency::c5      , Duration::Eight      }, // 20
   
   // Measure 5
-  {Frequency::d5, Duration::QuarterPlus}, // 22
-  {Frequency::f5, Duration::Eight  },
-  {Frequency::a5, Duration::Quarter},
-  {Frequency::g5, Duration::Eight  },
-  {Frequency::f5, Duration::Eight  },
+  {Frequency::d5      , Duration::QuarterPlus}, // 22
+  {Frequency::f5      , Duration::Eight      }, // 23
+  {Frequency::a5      , Duration::Quarter    }, // 24
+  {Frequency::g5      , Duration::Eight      }, // 25
+  {Frequency::f5      , Duration::Eight      }, // 26
   
   // Measure 6
-  {Frequency::e5, Duration::QuarterPlus},
-  {Frequency::c5, Duration::Eight  },
-  {Frequency::e5, Duration::Quarter},
-  {Frequency::d5, Duration::Eight  },
-  {Frequency::c5, Duration::Eight  },
+  {Frequency::e5      , Duration::QuarterPlus}, // 27
+  {Frequency::c5      , Duration::Eight      }, // 28
+  {Frequency::e5      , Duration::Quarter    }, // 29
+  {Frequency::d5      , Duration::Eight      }, // 30
+  {Frequency::c5      , Duration::Eight      }, // 31
   
   // Measure 7
-  {Frequency::b4, Duration::Quarter},
-  {Frequency::b4, Duration::Eight  },
-  {Frequency::c5, Duration::Eight  },
-  {Frequency::d5, Duration::Quarter},
-  {Frequency::e5, Duration::Quarter},
+  {Frequency::b4      , Duration::Quarter    }, // 32
+  {Frequency::b4      , Duration::Eight      }, // 33
+  {Frequency::c5      , Duration::Eight      }, // 34
+  {Frequency::d5      , Duration::Quarter    }, // 35
+  {Frequency::e5      , Duration::Quarter    }, // 36
   
   // Measure 8
-  {Frequency::c5, Duration::Quarter},
-  {Frequency::a4, Duration::Quarter},
-  {Frequency::a4, Duration::Quarter},
-  {Frequency::None, Duration::Quarter},
+  {Frequency::c5      , Duration::Quarter    }, // 37
+  {Frequency::a4      , Duration::Quarter    }, // 38
+  {Frequency::a4      , Duration::Quarter    }, // 39
+  {Frequency::None    , Duration::Quarter    }, // 40
   
   // Measure 9
-  {Frequency::e5, Duration::Half},
-  {Frequency::c5, Duration::Half},
+  {Frequency::e5      , Duration::Half       }, // 41
+  {Frequency::c5      , Duration::Half       }, // 42
   
   // Measure 10
-  {Frequency::d5, Duration::Half},
-  {Frequency::b4, Duration::Half},
+  {Frequency::d5      , Duration::Half       }, // 43
+  {Frequency::b4      , Duration::Half       }, // 44
   
   // Measure 11
-  {Frequency::c5, Duration::Half},
-  {Frequency::a4, Duration::Half},
+  {Frequency::c5      , Duration::Half       }, // 45
+  {Frequency::a4      , Duration::Half       }, // 46
   
   // Measure 12
-  {Frequency::g4_Sharp, Duration::Half},
-  {Frequency::b4, Duration::Quarter},
-  {Frequency::None, Duration::Quarter},
+  {Frequency::g4_Sharp, Duration::Half       }, // 47
+  {Frequency::b4      , Duration::Quarter    }, // 48
+  {Frequency::None    , Duration::Quarter    }, // 49
   
   // Measure 13
-  {Frequency::e5, Duration::Half},
-  {Frequency::c5, Duration::Half},
+  {Frequency::e5      , Duration::Half       }, // 50
+  {Frequency::c5      , Duration::Half       }, // 51
   
   // Measure 14
-  {Frequency::d5, Duration::Half},
-  {Frequency::b4, Duration::Half},
+  {Frequency::d5      , Duration::Half       }, // 52
+  {Frequency::b4      , Duration::Half       }, // 53
   
   // Measure 15
-  {Frequency::c5, Duration::Quarter},
-  {Frequency::e5, Duration::Quarter},
-  {Frequency::g5, Duration::Half},
+  {Frequency::c5      , Duration::Quarter    }, // 54
+  {Frequency::e5      , Duration::Quarter    }, // 55
+  {Frequency::g5      , Duration::Half       }, // 56
   
   // Measure 16
-  {Frequency::f5_Sharp, Duration::Half},
-  {Frequency::None, Duration::Half},
+  {Frequency::f5_Sharp, Duration::Half       }, // 57
+  {Frequency::None    , Duration::Half       }, // 58
+};
+
+const Note Mario[] PROGMEM = {
+  // Measure 1
+  {Frequency::e5      , Duration::Eight      },
+  {Frequency::e5      , Duration::Eight      },
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::e5      , Duration::Eight      },
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::e5      , Duration::Quarter    },
+
+  // Measure 2
+  {Frequency::g5      , Duration::Quarter    },
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::g4      , Duration::Quarter    },
+  {Frequency::None    , Duration::Quarter    },
+
+  // Measure 3
+  {Frequency::c5      , Duration::QuarterPlus},
+  {Frequency::g4      , Duration::Eight      },
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::e4      , Duration::QuarterPlus},
+
+  // Measure 4
+  {Frequency::a4      , Duration::Quarter    },
+  {Frequency::b4      , Duration::Eight      },
+  {Frequency::b4      , Duration::Eight      },
+  {Frequency::b4_Flat , Duration::Eight      },
+  {Frequency::a4      , Duration::Quarter    },
+
+  // Measure 5
+  {Frequency::g4      , Duration::Quarter    },
+  {Frequency::e5      , Duration::Quarter    },
+  {Frequency::g5      , Duration::Quarter    },
+  {Frequency::a5      , Duration::Quarter    },
+  {Frequency::f5      , Duration::Eight      },
+  {Frequency::g5      , Duration::Eight      },
+  
+  // Measure 6
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::e5      , Duration::Quarter    },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::d5      , Duration::Eight      },
+  {Frequency::b4      , Duration::Quarter    },
+  {Frequency::None    , Duration::Eight      },
+  
+  // Measure 7
+  {Frequency::c5      , Duration::QuarterPlus},
+  {Frequency::g4      , Duration::Eight      },
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::e4      , Duration::QuarterPlus},
+  
+  // Measure 8
+  {Frequency::a4      , Duration::Quarter    },
+  {Frequency::b4      , Duration::Quarter    },
+  {Frequency::b4_Flat , Duration::Eight      },
+  {Frequency::a4      , Duration::Quarter    },
+  
+  // Measure 9
+  {Frequency::g4      , Duration::Quarter    },
+  {Frequency::e5      , Duration::Quarter    },
+  {Frequency::g5      , Duration::Quarter    },
+  {Frequency::a5      , Duration::Quarter    },
+  {Frequency::f5      , Duration::Eight      },
+  {Frequency::g5      , Duration::Eight      },
+  
+  // Measure 10
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::e5      , Duration::Quarter    },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::d5      , Duration::Eight      },
+  {Frequency::b5      , Duration::Quarter    },
+  {Frequency::None    , Duration::Eight      },
+  
+  // Measure 11
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::g5      , Duration::Eight      },
+  {Frequency::g5_Flat , Duration::Eight      },
+  {Frequency::f5      , Duration::Eight      },
+  {Frequency::d5_Sharp, Duration::Quarter    },
+  {Frequency::e5      , Duration::Eight      },
+  
+  // Measure 12
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::g4_Sharp, Duration::Eight      },
+  {Frequency::a4      , Duration::Eight      },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::a4      , Duration::Eight      },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::d5      , Duration::Eight      },
+  
+  // Measure 13
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::g5      , Duration::Eight      },
+  {Frequency::g5_Flat , Duration::Eight      },
+  {Frequency::f5      , Duration::Eight      },
+  {Frequency::d5_Sharp, Duration::Quarter    },
+  {Frequency::e5      , Duration::Eight      },
+  
+  // Measure 14
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::c6      , Duration::Eight      },
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::c6      , Duration::Eight      },
+  {Frequency::c6      , Duration::Half       },
+  
+  // Measure 15
+  {Frequency::None    , Duration::Quarter    },
+  {Frequency::g5      , Duration::Eight      },
+  {Frequency::g5_Flat , Duration::Eight      },
+  {Frequency::f5      , Duration::Eight      },
+  {Frequency::d5_Sharp, Duration::Quarter    },
+  {Frequency::e5      , Duration::Eight      },
+  
+  // Measure 16
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::g4_Sharp, Duration::Eight      },
+  {Frequency::a4      , Duration::Eight      },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::None    , Duration::Eight      },
+  {Frequency::a4      , Duration::Eight      },
+  {Frequency::c5      , Duration::Eight      },
+  {Frequency::d5      , Duration::Eight      },
 };
 
 String SerialBuffer = "";
 
+template <typename T> void PROGMEM_readAnything (const T * sce, T& dest) {
+  memcpy_P (&dest, sce, sizeof (T));
+}
+
+template <typename T> T PROGMEM_getAnything (const T * sce) {
+  static T temp;
+  memcpy_P (&temp, sce, sizeof (T));
+  return temp;
+}
+
+// number of items in an array
+template< typename T, size_t N > size_t ArraySize (T (&) [N]){ return N; }
+
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(38400);
-  int note = 0;
-  int duration = 0;
-  int beatsPerMinute = 1;
-  /* for(int i = 0;i < 25;i++) {
-    duration = (HappyBirthday[i].duration * 1000 / beatsPerMinute) * 60 / Duration::Quarter;
-    playNote(HappyBirthday[i].frequency, duration);
-  } */
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int note = 0;
-  long int duration = 0;
-  int beatsPerMinute = 60;
+  
   while(Serial.available() > 0) {
     SerialBuffer = Serial.readString();
 
     if(SerialBuffer.startsWith("Happy Birthday", 0)) {
-      beatsPerMinute = 90;
-      for(int i = 0;i < 25;i++) {
-        duration = (HappyBirthday[i].duration * 60000 / Duration::Quarter) / beatsPerMinute);
-        playNote(HappyBirthday[i].frequency, duration);
+      lcd.clear();
+      lcd.print("Happy Birthday");
+      for(int i = 0;i < ArraySize(HappyBirthday);i++) {
+        Note note;
+        PROGMEM_readAnything(&HappyBirthday[i], note);
+        playNote(note, 90, 80);
       }
     } else if(SerialBuffer.startsWith("Tetris", 0)) {
-      beatsPerMinute = 144;
-      for(int i = 0;i < 58;i++) {
-        duration = ((Tetris[i].duration * 60000 / Duration::Quarter) / beatsPerMinute);
-        playNote(Tetris[i].frequency, duration);
+      lcd.clear();
+      lcd.print("Tetris Theme");
+      for(int i = 0;i < ArraySize(Tetris);i++) {
+        Note note;
+        PROGMEM_readAnything(&Tetris[i], note);
+        playNote(note, 144, 80);
+      }
+    } else if(SerialBuffer.startsWith("Mario", 0)) {
+      lcd.clear();
+      lcd.print("Mario Theme");
+      for(int i = 0;i < ArraySize(Mario);i++) {
+        Note note;
+        PROGMEM_readAnything(&Mario[i], note);
+        playNote(note, 130, 80);
       }
     }
   }
 }
 
-void playNote(Frequency frequency, int duration) {
-  int note = Frequency(frequency);
+void playNote(Note note, int beatsPerMinute, int onTime) {
 
-  if(note == 0) {
+  long int duration = (note.duration * 60000 / Duration::Quarter) / beatsPerMinute;
+  int frequency = Frequency(note.frequency);
+
+  if(frequency == 0) {
     noTone(BUZZER_PIN);
   } else {
-    tone(BUZZER_PIN, note);
+    tone(BUZZER_PIN, frequency);
   }
-  delay(duration * 6/10);
+  delay((duration / 100) * onTime);
   noTone(BUZZER_PIN);
-  delay(duration * 4/10);
+  delay((duration / 100) * (100 - onTime));
 
   return;
 }

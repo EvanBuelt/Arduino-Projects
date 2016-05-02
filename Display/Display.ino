@@ -60,7 +60,7 @@ unsigned int SerialData = 0;
 unsigned int lcdUpdateRate = 500;
 unsigned int adcSamplingRate = 25;
 unsigned int serialTransferRate = 10000;
-unsigned int spiTransferRate = 10000;
+unsigned int spiTransferRate = 60000;
 
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(RS_PIN, ENABLE_PIN, DB7, DB6, DB5, DB4);

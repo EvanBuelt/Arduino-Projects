@@ -1,9 +1,11 @@
 #include <avr/pgmspace.h>
 #include <LiquidCrystal.h>
 #include "Song.h"
-#include "HappyBirthday.h"
+#include "Happy_Birthday.h"
 #include "Tetris.h"
 #include "Mario.h"
+#include "Fire_Emblem.h"
+#include "Pokemon.h"
 
 const int BUZZER_PIN = 6;
 
@@ -65,6 +67,22 @@ void loop() {
         Note note;
         PROGMEM_readAnything(&Mario[i], note);
         playNote(BUZZER_PIN, note, 130, 80);
+      }
+    } else if(SerialBuffer.startsWith("Fire Emblem", 0)) {
+      lcd.clear();
+      lcd.print("Fire Emblem");
+      for(int i = 0;i < ArraySize(FireEmblem);i++) {
+        Note note;
+        PROGMEM_readAnything(&FireEmblem[i], note);
+        playNote(BUZZER_PIN, note, 140, 80);
+      }
+    } else if(SerialBuffer.startsWith("Pokemon", 0)) {
+      lcd.clear();
+      lcd.print("Pokemon");
+      for(int i = 0;i < ArraySize(Pokemon);i++) {
+        Note note;
+        PROGMEM_readAnything(&Pokemon[i], note);
+        playNote(BUZZER_PIN, note, 152, 80);
       }
     }
   }

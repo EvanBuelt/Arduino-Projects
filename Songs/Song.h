@@ -77,6 +77,7 @@ enum Frequency {
 };
 
 enum Duration {
+  Sixteenth   = 1,
   Eight       = 2,
   EightPlus   = 3,
   Quarter     = 4,

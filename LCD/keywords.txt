@@ -1,0 +1,79 @@
+#######################################
+# Syntax Coloring Map For LCD_Low_Level
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+LCD_Low_Level	KEYWORD1	LCD_Low_Level
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+init	KEYWORD2
+begin	KEYWORD2
+clearDisplay	KEYWORD2
+returnHome	KEYWORD2
+entrySetMode	KEYWORD2
+displayControl	KEYWORD2
+cursorDisplayShift	KEYWORD2
+functionSet	KEYWORD2
+setCGRAMAddress	KEYWORD2
+setDDRAMAddress	KEYWORD2
+readAddress	KEYWORD2
+readBusyFlag	KEYWORD2
+writeDataToRAM	KEYWORD2
+readDataFromRAM	KEYWORD2
+
+command	KEYWORD2
+writeData	KEYWORD2
+readData	KEYWORD2
+writeControl	KEYWORD2
+sendData	KEYWORD2
+receive	KEYWORD2
+waitUntilNotBusy	KEYWORD2
+write4bits	KEYWORD2
+write8bits KEYWORD2
+read4bits	KEYWORD2
+read8bits	KEYWORD2
+pulseLow	KEYWORD2
+pulseHigh	KEYWORD2
+pulseEnable	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+LCD_ClearDisplay	LITERAL1
+LCD_ReturnHome	LITERAL1
+LCD_EntryModeSet	LITERAL1
+LCD_DisplayControl	LITERAL1
+LCD_CursorShift	LITERAL1
+LCD_FunctionSet	LITERAL1
+LCD_SetCGRAMAddress	LITERAL1
+LCD_SetDDRAMAddress	LITERAL1
+
+LCD_CursorLeft	LITERAL1
+LCD_CursorRight	LITERAL1
+LCD_DisplayLeft	LITERAL1
+LCD_DisplayRight	LITERAL1
+
+LCD_BlinkOff	LITERAL1
+LCD_BlinkOn	LITERAL1
+LCD_CursorOff	LITERAL1
+LCD_CursorOn	LITERAL1
+LCD_DisplayOff	LITERAL1
+LCD_DisplayOn	LITERAL1
+
+LCD_MoveLeft	LITERAL1
+LCD_MoveRight	LITERAL1
+LCD_MoveCursor	LITERAL1
+LCD_MoveDisplay	LITERAL1
+
+LCD_5x8Dots	LITERAL1
+LCD_5x10Dots	LITERAL1
+LCD_1Line	LITERAL1
+LCD_2Line	LITERAL1
+LCD_4BitMode	LITERAL1
+LCD_8BitMode	LITERAL1

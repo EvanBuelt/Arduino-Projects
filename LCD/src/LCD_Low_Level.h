@@ -3,6 +3,18 @@
 
 #include <Arduino.h>
 
+/*
+TODO: 
+-Use direct port manipulation rather than DigitalWrite/Read: direct port manipulation will be slightly faster, and more portable to non-arduino code
+-Improve naming of functions: Some functions could have better namespace
+-Reorganize where functions are defined in header as well as where they're implemented in the cpp: Readability improvements
+-Add ability to use/not use R/W: Read functionality may not be important, so this would be an improvement.  Some rework is required
+-Add two class initializations to support using/not using R/W: See one above
+-Remove _display_function: This was added as I was using the Liquad Crystal library as reference.  I may not need this as it's only used in initialization
+
+
+*/
+
 // Commands
 #define LCD_ClearDisplay 0x01
 #define LCD_ReturnHome 0x02
